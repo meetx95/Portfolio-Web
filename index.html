@@ -1,868 +1,16 @@
 <html>
-
 <head>
-  <title>Meet Gamit — Frontend Developer & Motion Designer</title>
+  <title>Last Version</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --white: #ffffff;
-      --black: #000000;
-      --gray-50: #f5f5f7;
-      --gray-100: #e8e8ed;
-      --gray-200: #d2d2d7;
-      --gray-400: #86868b;
-      --gray-600: #6e6e73;
-      --gray-700: #383838;
-      --gray-800: #1d1d1f;
-      --blue: #0071e3;
-      --blue-hover: #0077ed;
-      --blue-glow: rgba(0, 113, 227, 0.4);
-      --nav-height: 64px;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
-      background: var(--white);
-      color: var(--gray-800);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: var(--nav-height);
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: saturate(180%) blur(28px);
-      border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 max(28px, env(safe-area-inset-left));
-      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
-    }
-
-    nav.scrolled {
-      background: rgba(255, 255, 255, 0.88);
-      backdrop-filter: saturate(180%) blur(32px);
-      border-bottom-color: rgba(0, 0, 0, 0.08);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-      height: 56px;
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-    }
-
-    .logo-icon {
-      font-size: 24px;
-      transition: transform 0.25s ease, filter 0.3s;
-      display: inline-block;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.05));
-    }
-
-    .nav-logo:hover .logo-icon {
-      transform: scale(1.08) rotate(5deg);
-      filter: drop-shadow(0 4px 8px rgba(0, 113, 227, 0.25));
-    }
-
-    .logo-text {
-      font-size: 20px;
-      font-weight: 620;
-      color: var(--gray-800);
-      letter-spacing: -0.3px;
-      background: linear-gradient(135deg, #1d1d1f 0%, #3a3a3e 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      transition: all 0.3s;
-    }
-
-    .nav-logo:hover .logo-text {
-      background: linear-gradient(135deg, #0071e3 0%, #34aadc 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-links li {
-      position: relative;
-    }
-
-    .nav-links a {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--gray-600);
-      text-decoration: none;
-      letter-spacing: -0.2px;
-      transition: color 0.25s ease;
-      padding: 6px 0;
-      display: inline-block;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--blue), #34aadc);
-      border-radius: 4px;
-      transition: width 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    }
-
-    .nav-links a:hover {
-      color: var(--gray-800);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    /* Active link highlight */
-    .nav-links a.active {
-      color: var(--blue);
-      font-weight: 550;
-    }
-
-    .nav-links a.active::after {
-      width: 100%;
-      background: var(--blue);
-    }
-
-    /* Right side button (Other Website) */
-    .nav-web {
-      font-size: 13.5px;
-      font-weight: 510;
-      color: white;
-      background: linear-gradient(135deg, #1d1d1f 0%, #2c2c2e 100%);
-      padding: 8px 20px;
-      border-radius: 980px;
-      text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.2);
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), inset 0 0 0 0.5px rgba(255, 255, 255, 0.1);
-      letter-spacing: -0.2px;
-      backdrop-filter: blur(4px);
-    }
-
-    .nav-web i {
-      margin-left: 6px;
-      font-size: 11px;
-      transition: transform 0.2s;
-    }
-
-    .nav-web:hover {
-      background: linear-gradient(135deg, #0071e3 0%, #1e88e5 100%);
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(0, 113, 227, 0.25);
-    }
-
-    .nav-web:hover i {
-      transform: translateX(3px);
-    }
-
-    /* Hamburger Button (mobile) */
-    .hamburger {
-      display: none;
-      background: rgba(0, 0, 0, 0.04);
-      border: none;
-      font-size: 22px;
-      color: var(--gray-800);
-      cursor: pointer;
-      width: 40px;
-      height: 40px;
-      border-radius: 30px;
-      transition: all 0.2s;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hamburger:hover {
-      background: rgba(0, 0, 0, 0.08);
-      transform: scale(0.96);
-    }
-
-    /* Mobile menu */
-    .mobile-menu {
-      position: fixed;
-      top: var(--nav-height);
-      left: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(40px);
-      border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
-      padding: 24px 28px 36px;
-      flex-direction: column;
-      gap: 18px;
-      z-index: 999;
-      transform: translateY(-120%);
-      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.1);
-      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
-    }
-
-    .mobile-menu.open {
-      transform: translateY(0);
-    }
-
-    .mobile-menu a {
-      font-size: 19px;
-      font-weight: 500;
-      color: var(--gray-800);
-      text-decoration: none;
-      padding: 12px 0;
-      border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
-      transition: all 0.2s;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .mobile-menu a:hover {
-      color: var(--blue);
-      padding-left: 8px;
-    }
-
-    .mobile-menu a i {
-      font-size: 14px;
-      opacity: 0.6;
-    }
-
-    /* Rest of the page styles (kept original aesthetic) */
-    .btn-primary,
-    .btn-ghost,
-    .btn-white,
-    .btn-outline-white {
-      transition: all 0.2s ease;
-    }
-
-    .section-label {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: 14px;
-    }
-
-    .section-title {
-      font-size: clamp(36px, 5vw, 56px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.06;
-      margin-bottom: 20px;
-    }
-
-    .section-sub {
-      margin: 0 auto 60px;
-      font-size: 19px;
-      color: var(--gray-600);
-      line-height: 1.55;
-      max-width: 560px;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* Hero & rest sections (keeping original beauty) */
-    .info {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 120px 25px 80px;
-      position: relative;
-    }
-
-    .info::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0, 113, 227, 0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .info-head {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--blue);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-      animation: fadeUp 0.8s ease 0.1s forwards;
-      opacity: 0;
-    }
-
-    .info h1 {
-      font-size: clamp(48px, 8vw, 96px);
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      line-height: 1.0;
-      margin-bottom: 22px;
-      animation: fadeUp 0.8s ease 0.25s forwards;
-      opacity: 0;
-    }
-
-    .info h1 em {
-      font-style: normal;
-      background: linear-gradient(135deg, #0071e3, #34aadc);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .info-sub {
-      font-size: clamp(17px, 2.5vw, 19px);
-      color: var(--gray-600);
-      max-width: 600px;
-      margin-bottom: 44px;
-      animation: fadeUp 0.8s ease 0.4s forwards;
-      opacity: 0;
-    }
-
-    .info-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      justify-content: center;
-      animation: fadeUp 0.8s ease 0.55s forwards;
-      opacity: 0;
-    }
-
-    .btn-primary {
-      background: var(--blue);
-      color: white;
-      padding: 12px 28px;
-      border-radius: 980px;
-      font-size: 15px;
-      font-weight: 500;
-      text-decoration: none;
-      display: inline-block;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    }
-
-    .btn-primary:hover {
-      background: var(--blue-hover);
-      transform: scale(1.02);
-      box-shadow: 0 8px 18px rgba(0, 113, 227, 0.2);
-    }
-
-    .btn-ghost {
-      color: var(--blue);
-      padding: 12px 28px;
-      border-radius: 980px;
-      font-size: 15px;
-      font-weight: 500;
-      text-decoration: none;
-      background: transparent;
-    }
-
-    .btn-ghost:hover {
-      background: rgba(0, 113, 227, 0.06);
-      transform: scale(1.02);
-    }
-
-    .apple-mockup {
-      margin-top: 70px;
-      width: min(800px, 90vw);
-    }
-
-    .mockup-frame {
-      background: #1d1d1f;
-      border-radius: 32px;
-      padding: 16px;
-      box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.3);
-    }
-
-    .mockup-screen {
-      background: linear-gradient(145deg, #0d0d12, #15151a);
-      border-radius: 20px;
-      padding: 20px;
-    }
-
-    .apple-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .apple-card {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(10px);
-      border: 0.5px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      padding: 16px;
-    }
-
-    .apple-icon {
-      width: 32px;
-      height: 32px;
-      background: rgba(0, 113, 227, 0.15);
-      border-radius: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #2997ff;
-      margin-bottom: 12px;
-    }
-
-    .apple-line {
-      height: 8px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 4px;
-      margin-bottom: 6px;
-    }
-
-    .apple-line.short {
-      width: 65%;
-    }
-
-    .apple-line.long {
-      width: 85%;
-    }
-
-    .strip {
-      background: var(--gray-800);
-      padding: 22px 0;
-      overflow: hidden;
-    }
-
-    .marquee-track {
-      display: inline-flex;
-      gap: 48px;
-      animation: marquee 22s linear infinite;
-      white-space: nowrap;
-    }
-
-    .marquee-track span {
-      font-size: 14px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.45);
-      text-transform: uppercase;
-    }
-
-    .marquee-track .accent {
-      color: rgba(255, 255, 255, 0.85);
-    }
-
-    @keyframes marquee {
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .Projects {
-      background: var(--gray-50);
-      text-align: center;
-      padding: 100px 24px;
-    }
-
-    .Projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      max-width: 1200px;
-      margin: 60px auto 0;
-    }
-
-    .feature-card {
-      background: white;
-      padding: 48px 32px;
-      text-align: left;
-      border-radius: 24px;
-      transition: all 0.3s;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
-      border: 0.5px solid rgba(0, 0, 0, 0.03);
-    }
-
-    .feature-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.1);
-    }
-
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      margin-bottom: 24px;
-    }
-
-    .feature-title {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .feature-tool {
-      font-size: 14px;
-      color: var(--blue);
-      font-weight: 500;
-      margin-bottom: 12px;
-    }
-
-    .feature-desc {
-      color: var(--gray-600);
-      line-height: 1.5;
-    }
-
-    .showcase {
-      background: var(--gray-800);
-      color: white;
-      text-align: center;
-      padding: 100px 24px;
-    }
-
-    .showcase .section-title {
-      color: white;
-    }
-
-    .showcase-cards {
-      display: flex;
-      gap: 24px;
-      max-width: 1100px;
-      margin: 48px auto 0;
-      flex-wrap: wrap;
-      justify-content: center;
-      overflow-x: hidden;
-    }
-
-    .sc-Work {
-      flex: 1;
-      min-width: 290px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 28px;
-      padding: 40px 25px;
-      transition: all 0.25s;
-      backdrop-filter: blur(2px);
-    }
-
-    .sc-Work:hover {
-      background: rgba(255, 255, 255, 0.09);
-      transform: translateY(-5px);
-    }
-
-    .sc-Work-badge {
-      background: rgba(52, 170, 220, 0.15);
-      color: #34aadc;
-      padding: 5px 12px;
-      border-radius: 40px;
-      font-size: 11px;
-      display: inline-block;
-      margin-bottom: 20px;
-    }
-
-    .sc-Work-visual {
-      font-size: 48px;
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 20px;
-      padding: 32px;
-      margin-bottom: 28px;
-    }
-
-    .sc-Work h3 {
-      font-size: 26px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .sc-Work p {
-      color: rgba(255, 255, 255, 0.6);
-      margin-bottom: 32px;
-      line-height: 1.5;
-    }
-
-    .sc-Work-link {
-      display: flex;
-      justify-content: space-around;
-    }
-
-    .sc-Work .btn-primary {
-      background: white;
-      color: var(--gray-800);
-      width: 48%;
-      text-align: center;
-      padding: 12px 5PX;
-    }
-
-    .sc-Work .btn-link {
-      background: var(--blue);
-      padding: 12px 5PX;
-      color: white;
-      font-size: 15px;
-      font-weight: 500;
-      width: 48%;
-      border-radius: 980px;
-      text-decoration: none;
-      display: inline-block;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    }
-
-    .sc-Work .btn-link:hover {
-      background: var(--blue-hover);
-      transform: scale(1.02);
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.301);
-    }
-
-    .testimonials {
-      background: var(--gray-50);
-      padding: 100px 24px;
-      text-align: center;
-    }
-
-    .testi-grid {
-      max-width: 700px;
-      margin: 60px auto 0;
-    }
-
-    .testi-card {
-      background: white;
-      border-radius: 28px;
-      padding: 40px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
-    }
-
-    .testi-stars {
-      color: #ffb340;
-      letter-spacing: 2px;
-      margin-bottom: 20px;
-    }
-
-    .testi-text {
-      font-size: 17px;
-      line-height: 1.6;
-      margin-bottom: 28px;
-    }
-
-    .testi-author {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      justify-content: center;
-    }
-
-    .testi-avatar {
-      width: 48px;
-      height: 48px;
-      background: #e3f0fd;
-      color: #0071e3;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-    }
-
-    .cta-section {
-      background: var(--gray-800);
-      text-align: center;
-      padding: 120px 24px;
-    }
-
-    .cta-section .section-title {
-      color: white;
-    }
-
-    .btn-white {
-      background: white;
-      color: var(--gray-800);
-      padding: 12px 28px;
-      border-radius: 980px;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .btn-outline-white {
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      color: white;
-      padding: 12px 28px;
-      border-radius: 980px;
-      text-decoration: none;
-      margin-left: 12px;
-      font-weight: 500;
-    }
-
-    footer {
-      background: var(--gray-50);
-      padding: 60px 35px 40px;
-      border-top: 0.5px solid var(--gray-100);
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.5fr repeat(3, 1fr);
-      gap: 40px;
-      max-width: 1100px;
-      margin: 0 auto 48px;
-    }
-
-    .footer-brand p {
-      font-size: 13px;
-      color: var(--gray-400);
-      margin-top: 12px;
-      max-width: 220px;
-    }
-
-    .footer-col h4 {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-
-    .footer-col a {
-      display: block;
-      font-size: 13px;
-      color: var(--gray-500);
-      text-decoration: none;
-      margin-bottom: 10px;
-      transition: color 0.2s;
-    }
-
-    .footer-col a:hover {
-      color: var(--gray-800);
-    }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding-top: 24px;
-      border-top: 0.5px solid var(--gray-200);
-    }
-
-    .footer-bottom-links a {
-      color: var(--gray-500);
-      margin-left: 20px;
-      font-size: 18px;
-      transition: color 0.2s;
-    }
-
-    @media (max-width: 768px) {
-
-      .nav-links,
-      .nav-web {
-        display: none;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      nav {
-        padding: 0 20px;
-      }
-
-      .logo-text {
-        font-size: 18px;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .sc-Work {
-        min-width: 100%;
-      }
-    }
-
-    /* Back to top button */
-    #backToTop {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: var(--blue);
-      color: white;
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      cursor: pointer;
-      box-shadow: 0 8px 22px var(--blue-glow);
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity .25s ease, transform .25s ease;
-      pointer-events: none;
-      z-index: 1200;
-    }
-
-    #backToTop.visible {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    /* Ensure marquee can be paused via JS */
-    .marquee-track {
-      animation-play-state: running;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+
   <nav id="nav">
+
     <a href="#" class="nav-logo">
       <span class="logo-icon">◆</span>
       <span class="logo-text">Meet</span>
@@ -884,15 +32,19 @@
   </nav>
 
   <div class="mobile-menu" id="mobileMenu">
+
     <a href="#Projects">Projects <i class="fa-solid fa-chevron-right"></i></a>
     <a href="#Works">GitHub & LinkedIn <i class="fa-solid fa-chevron-right"></i></a>
     <a href="#about">About <i class="fa-solid fa-chevron-right"></i></a>
     <a href="#Contact">Contact <i class="fa-solid fa-chevron-right"></i></a>
     <a href="#" id="mobileOtherBtn">Other Website <i class="fa-solid fa-external-link-alt"></i></a>
+
   </div>
 
   <main>
+
     <section class="info">
+
       <p class="info-head">MEET</p>
       <h1>
         Frontend <em>Developer</em>&<br>
@@ -953,11 +105,19 @@
           </div>
         </div>
       </div>
+
     </section>
 
     <section class="maequee">
+
       <div class="strip">
         <div class="marquee-track">
+          <span class="accent">React.js</span><span>·</span><span>Motion</span><span>·</span>
+          <span class="accent">Create</span><span>·</span><span>Design</span><span>·</span>
+          <span class="accent">UI/UX</span><span>·</span><span>After Effects</span><span>·</span>
+          <span class="accent">React.js</span><span>·</span><span>Motion</span><span>·</span>
+          <span class="accent">Create</span><span>·</span><span>Design</span><span>·</span>
+          <span class="accent">UI/UX</span><span>·</span><span>After Effects</span><span>·</span>
           <span class="accent">React.js</span><span>·</span><span>Motion</span><span>·</span>
           <span class="accent">Create</span><span>·</span><span>Design</span><span>·</span>
           <span class="accent">UI/UX</span><span>·</span><span>After Effects</span><span>·</span>
@@ -965,27 +125,28 @@
           <span class="accent">Create</span><span>·</span><span>Design</span>
         </div>
       </div>
+
     </section>
 
     <section class="Projects" id="Projects">
+
       <div class="Projects-header reveal">
         <p class="section-label">Featured work</p>
         <h2 class="section-title">
           Selected work in web<br>
           & motion design
         </h2>
-        <p class="section-sub">
-          A collection of projects focused on my experience, performance, visual design & motion.
-        </p>
+        <p class="section-sub">A collection of projects focused on my experience, performance, visual design & motion.</p>
       </div>
+
       <div class="Projects-grid reveal">
 
         <div class="feature-card">
           <div class="feature-icon" style="background:#1d1d1f; color:white;">
             <i class="fa-solid fa-robot"></i>
           </div>
-          <h3 class="feature-title">AI Chat App</h3>
-          <p class="feature-tool">React · JavaScript · Firebase</p>
+          <h3 class="feature-title">AI Chat App <br> <h3 class="In-progress">[In progress]</h3></h3>
+          <p class="feature-tool">Python · Firebase</p>
           <p class="feature-desc">Real-time chat interface with AI responses. Clean, fast, and functional.</p>
         </div>
 
@@ -993,7 +154,7 @@
           <div class="feature-icon" style="background:#0071e3; color:white;">
             <i class="fa-solid fa-globe"></i>
           </div>
-          <h3 class="feature-title">Portfolio Website</h3>
+          <h3 class="feature-title">Portfolio Website<h3 class="done">[Complete]</h3></h3>
           <p class="feature-tool">HTML · CSS · JavaScript</p>
           <p class="feature-desc">Personal portfolio with glassmorphism effects, modern responsive layout.</p>
         </div>
@@ -1002,7 +163,7 @@
           <div class="feature-icon" style="background:#1c1c1e; color:white;">
             <i class="fa-solid fa-clapperboard"></i>
           </div>
-          <h3 class="feature-title">Motion Graphics</h3>
+          <h3 class="feature-title">Motion Graphics <h3 class="In-progress">[In progress]</h3></h3>
           <p class="feature-tool">After Effects</p>
           <p class="feature-desc">Smooth transitions, kinetic typography, visual storytelling.</p>
         </div>
@@ -1011,23 +172,20 @@
           <div class="feature-icon" style="background:#34c759; color:white;">
             <i class="fa-regular fa-compass"></i>
           </div>
-          <h3 class="feature-title">Exploration</h3>
-          <p class="feature-tool">In progress</p>
+          <h3 class="feature-title">Exploration<h3 class="In-progress">[In progress]</h3></h3>
+          <p class="feature-tool">TypeScript</p>
           <p class="feature-desc">Currently working on additional projects in web development.</p>
         </div>
 
       </div>
+
     </section>
 
     <section class="showcase" id="Works">
+
       <p class="section-label reveal">GitHub & LinkedIn</p>
-      <h2 class="section-title reveal">
-        Build projects, explore technologies<br>
-        & learn every day.
-      </h2>
-      <p class="section-sub reveal">
-        I enjoy creating practical projects, experimenting with new tools, and sharing what I learn along the way.
-      </p>
+      <h2 class="section-title reveal">Build projects, explore technologies<br>& learn every day.</h2>
+      <p class="section-sub reveal">I enjoy creating practical projects, experimenting with new tools, and sharing what I learn along the way.</p>  
 
       <div class="section-button reveal">
         <a class="btn-primary" href="https://github.com/meetx95" target="_blank">GitHub</a>
@@ -1042,9 +200,7 @@
             <i class="fa-solid fa-robot"></i>
           </div>
           <h3>AI Chat Bot</h3>
-          <p>
-            React app with OpenAI-style interface. Modular components, real-time responses.
-          </p>
+          <p>React app with OpenAI-style interface. Modular components, real-time responses.</p>
           <div class="SC-work-link">
             <a class="btn-link" href="" target="_blank">View Live Project</a>
             <a class="btn-primary" href="https://github.com/meetx95" target="_blank">View Source Code</a>
@@ -1057,9 +213,7 @@
             <i class="fa-brands fa-apple"></i>
           </div>
           <h3>Apple like UI website</h3>
-          <p>
-            Recreating premium Apple feel — glassmorphism, smooth hover states.
-          </p>
+          <p>Recreating premium Apple feel — glassmorphism, smooth hover states.</p>
           <div class="SC-work-link">
             <a class="btn-link" href="" target="_blank">Live Project</a>
             <a class="btn-primary" href="https://github.com/meetx95" target="_blank">View Source Code</a>
@@ -1072,9 +226,7 @@
             <i class="fa-solid fa-globe"></i>
           </div>
           <h3>Interactive playground</h3>
-          <p>
-            Currently working on additional projects in web development and interactive design.
-          </p>
+          <p>Currently working on additional projects in web development and interactive design.</p>
           <div class="SC-work-link">
             <a class="btn-link" href="" target="_blank">Live Project</a>
             <a class="btn-primary" href="#">Coming soon</a>
@@ -1082,127 +234,195 @@
         </div>
 
       </div>
+
     </section>
 
     <section class="testimonials" id="about">
+
       <p class="section-label reveal">About Me</p>
       <h2 class="section-title reveal">I'm a Frontend Developer<br>& Experienced Motion Designer.</h2>
-      <div class="testi-grid">
-        <div class="testi-card reveal">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-text">I'm a frontend developer and motion designer passionate about creating modern,
-            responsive, and visually engaging digital experiences. I enjoy experimenting with UI design, animations, and
-            interactive web technologies.</p>
-          <div class="testi-author">
-            <div class="testi-avatar">MG</div>
-            <div>
-              <div class="testi-name">Meet Gamit</div>
-              <div class="testi-role">Frontend Developer & Motion Designer</div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+      <p class="section-sub reveal">I build modern websites, interactive interfaces and motion graphics that combine performance with beautiful design.</p>
+
     </section>
 
+    <section class="reviews" id="reviews">
+
+      <p class="section-label reveal">Reviews</p>
+      <h2 class="section-title reveal">What Clients Say</h2>
+      <p class="section-sub reveal">Real feedback from people I've worked with.</p>
+
+      <div class="reviews-toolbar reveal">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="5">★★★★★</button>
+        <button class="filter-btn" data-filter="4">★★★★</button>
+        <button class="filter-btn" data-filter="3">★★★</button>
+      </div>
+
+      <div class="reviews-grid" id="reviewsContainer">
+
+        <div class="review-card reveal" data-rating="5">
+          <div class="review-stars">★★★★★</div>
+          <p>Meet delivered exactly what I wanted. Clean design, smooth animations, and excellent communication throughout the project.</p>
+          <div class="review-author">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#5e5ce6,#9b59b6)">SJ</div>
+            <div class="review-author-info">
+              <strong>Sarah Johnson</strong>
+              <span>Product Designer</span>
+            </div>
+          </div>
+          <div class="review-footer">
+            <button class="like-btn" onclick="toggleLike(this)">
+              <span class="heart">♡</span><span class="like-count">12</span>
+            </button>
+            <span class="review-date">2 days ago</span>
+          </div>
+        </div>
+
+        <div class="review-card reveal" data-rating="5">
+          <div class="review-stars">★★★★★</div>
+          <p>Fast delivery and modern UI. The website looks premium and performs perfectly on all devices.</p>
+          <div class="review-author">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#30d158,#0071e3)">AB</div>
+            <div class="review-author-info">
+              <strong>Alex Brown</strong>
+              <span>Startup Founder</span>
+            </div>
+          </div>
+          <div class="review-footer">
+            <button class="like-btn" onclick="toggleLike(this)">
+              <span class="heart">♡</span><span class="like-count">7</span>
+            </button>
+            <span class="review-date">5 days ago</span>
+          </div>    
+        </div>
+
+        <div class="review-card reveal" data-rating="5">
+          <div class="review-stars">★★★★★</div>
+          <p>Great frontend skills and attention to detail. Highly recommended for web design and motion graphics work.
+          </p>
+          <div class="review-author">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#ff9f0a,#ff3b30)">ML</div>
+            <div class="review-author-info">
+              <strong>Michael Lee</strong>
+              <span>Marketing Lead</span>
+            </div>
+          </div>
+          <div class="review-footer">
+            <button class="like-btn" onclick="toggleLike(this)">
+              <span class="heart">♡</span><span class="like-count">5</span>
+            </button>
+            <span class="review-date">1 week ago</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="review-form-wrap reveal">
+        <h3>Leave a Review</h3>
+        <p class="form-sub">Worked with me? I'd love to hear from you.</p>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="username">Your Name</label>
+            <input type="text" id="username" placeholder="Jane Doe">
+          </div>
+          <div class="form-field">
+            <label for="userRole">Your Role</label>
+            <input type="text" id="userRole" placeholder="Designer">
+          </div>
+        </div>
+
+        <div class="form-field form-field-full">
+          <label>Rating</label>
+          <div class="star-picker">
+            <input type="radio" name="star" id="s5" value="5"><label for="s5">★</label>
+            <input type="radio" name="star" id="s4" value="4"><label for="s4">★</label>
+            <input type="radio" name="star" id="s3" value="3"><label for="s3">★</label>
+            <input type="radio" name="star" id="s2" value="2"><label for="s2">★</label>
+            <input type="radio" name="star" id="s1" value="1"><label for="s1">★</label>
+          </div>
+        </div>
+
+        <div class="form-field form-field-full">
+          <label for="reviewText">Your Review</label>
+          <textarea id="reviewText" placeholder="Share your experience…" maxlength="300"
+            oninput="updateCounter(this)"></textarea>
+          <div class="char-counter" id="charCounter">0 / 300</div>
+        </div>
+
+        <button class="form-submit" onclick="addReview()">Post Review</button>
+      </div>
+
+    </section>
+
+    <div class="review-toast" id="reviewToast">✓ Review posted!</div>
+
     <section class="cta-section" id="Contact">
+      
       <p class="section-label reveal">Let's work together</p>
       <h2 class="section-title reveal">Have a project in mind?</h2>
-      <p class="section-sub reveal">I'm currently available for freelance work, collaborations, and new opportunities.
-        If you have a project in mind, feel free to reach out.</p>
-      <div class="cta-actions reveal"><a class="btn-white" href="mailto:gamitmeet901@gmail.com">Email Me</a><a
-          class="btn-outline-white" href="https://www.linkedin.com/in/meet-gamit-645253310/"
-          target="_blank">LinkedIn</a></div>
+      <p class="section-sub reveal">I'm currently available for freelance work, collaborations, and new opportunities. If you have a project in mind, feel free to reach out.</p>
+      <div class="cta-actions reveal">
+        <a class="btn-white" href="mailto:gamitmeet901@gmail.com">Email Me</a>
+        <a class="btn-outline-white" href="https://www.linkedin.com/in/meet-gamit-645253310/" target="_blank">LinkedIn</a>
+      </div>
+
     </section>
+
   </main>
 
   <footer>
+
     <div class="footer-grid">
-      <div class="footer-brand"><a href="#" class="nav-logo" style="text-decoration:none;"><span
-            class="logo-icon">◆</span><span class="logo-text">MEET</span></a>
+    
+      <div class="footer-brand">
+        <a href="#" class="nav-logo" style="text-decoration:none;">
+          <span class="logo-icon">◆</span>
+          <span class="logo-text">MEET</span>
+        </a>
         <p>Frontend developer and motion designer focused on building modern digital experiences.</p>
       </div>
+
       <div class="footer-col">
-        <h4>Work</h4><a href="#Projects">Projects</a><a href="#Works">GitHub</a><a href="#">Motion Graphics</a>
+        <h4>Work</h4>
+        <a href="#Projects">Projects</a>
+        <a href="#Works">GitHub</a>
+        <a href="#">Motion Graphics</a>
       </div>
+    
       <div class="footer-col">
-        <h4>Resources</h4><a href="https://github.com/meetx95" target="_blank">GitHub</a><a
-          href="https://www.linkedin.com/in/meet-gamit-645253310/" target="_blank">LinkedIn</a><a
-          href="https://www.youtube.com/@mee.tx99" target="_blank">Tutorials</a>
+        <h4>Resources</h4>
+        <a href="https://github.com/meetx95" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/meet-gamit-645253310/" target="_blank">LinkedIn</a>
+        <a href="https://www.youtube.com/@mee.tx99" target="_blank">Tutorials</a>
       </div>
+
       <div class="footer-col">
-        <h4>Freelance Platform</h4><a href="https://www.fiverr.com/meetgamit1" target="_blank">Fiverr</a><a
-          href="https://www.freelancer.in/u/Meetx99" target="_blank">Freelancer</a><a href="#">Upwork</a>
+        <h4>Freelance Platform</h4>
+        <a href="https://www.fiverr.com/meetgamit1" target="_blank">Fiverr</a>
+        <a href="https://www.freelancer.in/u/Meetx99" target="_blank">Freelancer</a>
+        <a href="#">Upwork</a>
       </div>
+
     </div>
+
     <div class="footer-bottom">
       <p>© 2026 Meet · All rights reserved.</p>
-      <div class="footer-bottom-links"><a href="https://www.linkedin.com/in/meet-gamit-645253310/" target="_blank"><i
-            class="fa-brands fa-linkedin"></i></a><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i
-            class="fa-brands fa-discord"></i></a></div>
+      <div class="footer-bottom-links">
+        <a href="https://www.linkedin.com/in/meet-gamit-645253310/" target="_blank">
+          <i class="fa-brands fa-linkedin"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-discord"></i></a>
+      </div>
     </div>
+    
   </footer>
 
   <button id="backToTop" aria-label="Back to top">↑</button>
 
-  <script>
-    (function () {
-      const nav = document.getElementById('nav');
-      window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10));
-      const hamburger = document.getElementById('hamburgerBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-      function closeMenu() { mobileMenu.classList.remove('open'); }
-      hamburger?.addEventListener('click', (e) => { e.stopPropagation(); mobileMenu.classList.toggle('open'); });
-      document.querySelectorAll('.mobile-menu a').forEach(link => link.addEventListener('click', closeMenu));
-      window.addEventListener('click', (e) => { if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && e.target !== hamburger) closeMenu(); });
+  <script src="Logic.js"></script>
 
-      const otherBtn = document.getElementById('otherSiteBtn');
-      const mobileOther = document.getElementById('mobileOtherBtn');
-      const openOther = (e) => { e.preventDefault(); window.open('https://github.com/meetx95', '_blank'); };
-      otherBtn?.addEventListener('click', openOther);
-      mobileOther?.addEventListener('click', openOther);
-
-      // Active link highlight on scroll
-      const sections = ['Projects', 'Works', 'about', 'Contact'];
-      const navLinks = document.querySelectorAll('.nav-links a');
-      function setActiveLink() {
-        let current = '';
-        sections.forEach(id => {
-          const section = document.getElementById(id);
-          if (section) {
-            const rect = section.getBoundingClientRect();
-            if (rect.top <= 150 && rect.bottom >= 100) current = id;
-          }
-        });
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          const href = link.getAttribute('href')?.substring(1);
-          if (href === current) link.classList.add('active');
-        });
-      }
-      window.addEventListener('scroll', setActiveLink);
-      setActiveLink();
-
-      const reveals = document.querySelectorAll('.reveal');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
-      }, { threshold: 0.12 });
-      reveals.forEach(el => observer.observe(el));
-      setTimeout(() => reveals.forEach(r => { if (r.getBoundingClientRect().top < window.innerHeight - 100) r.classList.add('visible'); }), 100);
-
-      // Back to top button
-      const backBtn = document.getElementById('backToTop');
-      function updateBackBtn() { backBtn.classList.toggle('visible', window.scrollY > 400); }
-      window.addEventListener('scroll', updateBackBtn);
-      backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-      // Pause marquee on hover (desktop)
-      const marquee = document.querySelector('.marquee-track');
-      if (marquee) {
-        marquee.addEventListener('mouseenter', () => marquee.style.animationPlayState = 'paused');
-        marquee.addEventListener('mouseleave', () => marquee.style.animationPlayState = 'running');
-      }
-    })();
-  </script>
 </body>
 
 </html>
