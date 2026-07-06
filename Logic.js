@@ -30,17 +30,6 @@
     }
   });
 
-  const otherBtn = document.getElementById('otherSiteBtn');
-  const mobileOther = document.getElementById('mobileOtherBtn');
-
-  const openOther = (e) => {
-    e.preventDefault();
-    window.open('https://github.com/meetx95', '_blank');
-  };
-
-  otherBtn?.addEventListener('click', openOther);
-  mobileOther?.addEventListener('click', openOther);
-
   const sections = ['Projects', 'Works', 'about', 'Contact'];
   const navLinks = document.querySelectorAll('.nav-links a');
 
